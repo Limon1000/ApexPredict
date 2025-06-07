@@ -7,7 +7,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
 import random
 
-# Simulamos entrenamiento (usa tus propios datos históricos para hacerlo real)
+# Simulamos entrenamiento (usa los propios datos históricos reales)
 def entrenar_modelo():
     data = pd.DataFrame({
         'driver': ['VER', 'HAM', 'LEC', 'ALO', 'SAI', 'NOR'],
@@ -46,10 +46,10 @@ def predecir_resultado(driver, team):
     pred_pos = modelo_pos.predict(X)[0]
     pred_acc = modelo_acc.predict_proba(X)[0][1]  # Probabilidad de accidente
 
-    mensaje = f"🔢 Posición estimada: {pred_pos}\n🚧 Probabilidad de accidente: {pred_acc:.2%}"
+    mensaje = f" Posición estimada: {pred_pos}\n Probabilidad de accidente: {pred_acc:.2%}"
     messagebox.showinfo("Predicción", mensaje)
 
-# Interfaz gráfica
+# Interfaz 
 ventana = tk.Tk()
 ventana.title("Predicción F1 - Accidentes y Posición")
 
