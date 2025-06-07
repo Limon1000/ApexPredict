@@ -7,9 +7,9 @@ from tkinter import messagebox
 # Configurar FastF1 para usar cache y evitar descargas repetidas
 fastf1.Cache.enable_cache('cache')
 
-# Función para cargar datos y entrenar modelo simple
+# Función para cargar datos y entrenar el modelo simple
 def entrenar_modelo():
-    # Cargar sesión 2025 (ejemplo: GP de Mónaco, clasificación)
+    # Cargar sesión 2025 
     session = fastf1.get_session(2025, 'Monaco', 'Q')
     session.load()
     
@@ -26,7 +26,7 @@ def entrenar_modelo():
             })
     df = pd.DataFrame(data)
     
-    # Convertir nombres de pilotos a números para el modelo
+    # Convertir nombres de pilotos a números para este modelo
     df['DriverCode'] = pd.factorize(df['Driver'])[0]
     
     # Modelo simple que predice lap time solo con DriverCode
@@ -45,7 +45,7 @@ def predecir_tiempo(driver_name, model, df):
     pred = model.predict([[driver_code]])
     return pred[0]
 
-# Función al hacer clic en botón predecir
+# Funcion al hacer click en botón predecir
 def on_predecir():
     driver = entry_driver.get().strip()
     if not driver:
@@ -57,14 +57,14 @@ def on_predecir():
     else:
         messagebox.showerror("Error", f"Piloto {driver} no encontrado en los datos")
 
-# Entrenar modelo al inicio
+# Entrenar el modelo al inicio
 modelo, df_datos = entrenar_modelo()
 
-# Crear ventana tkinter
+# Crear la ventana del tkinter
 ventana = tk.Tk()
 ventana.title("Predicción de tiempos F1 2025")
 
-# Crear widgets
+# Crear los widgets
 label_driver = tk.Label(ventana, text="Código piloto (ej. VER):")
 label_driver.pack(pady=5)
 
